@@ -8,9 +8,13 @@ Nous allons prendre le code final du tutoriel qui est proposé sur le site offic
 
 Ce tutoriel s'adresse à des personnes qui ont déjà bien pris en main JavaScript.
 
-Pour commencer allez dans votre terminal et placez vous là ou vous souhaitez créer votre projet meteor, ensuite exécutez la commande suivante :
+Tout d'abord vous devez installer meteor
 
-meteor create simple-todos
+`curl https://install.meteor.com/ | sh`
+
+Ensuite allez dans votre terminal et placez vous là ou vous souhaitez créer votre projet meteor, ensuite exécutez la commande suivante :
+
+`meteor create simple-todos`
 
 Cette ligne de commande va générer des fichiers, si vous vous rendez dans votre projet simple-todos vous y verrez :
 
@@ -23,7 +27,7 @@ Nous ne toucherons pas au dossier .meteor mais simplement au trois fichiers à l
 
 Vous pouvez déjà lancer votre application en tappant :
 
-meteor
+`meteor`
 
 Si nous ouvrons une fenetre de navigateur nous verrons qu'il y a déjà du code mais ce n'est pas exceptionnel nous allons donc vider les fichiers HTML et JavaScript.
 
