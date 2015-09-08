@@ -109,7 +109,7 @@ header .hide-completed { float: right; }
 		padding-bottom: 5px;
 	}
 }
-```
+```
 
 ##Le fichier JavaScript :
 
@@ -121,16 +121,19 @@ Tasks = new Mongo.Collection("tasks");
 
 Nous définissons un helpers (un helpers est une fonction que l'on pourra éxécuter depuis de HTML) « tasks » qui va retourner tous les éléments de notre collection. 
 
-'''Template.body.helpers({
+```javascript
+Template.body.helpers({
     tasks: function() {
       return Tasks.find({}, {sort: {createdAt: -1}});
     }
-  });'''
+  });
+```
 
 Ensuite nous allons ''écouter'' sur l'élément submit (le bouton) qui à la classe « .new-task » grâce au paramètre 'event'.
 Nous allons pouvoir récupérer la valeur de l'élément puis nous inséront notre élément dans la collection « tasks » grâce à Tasks.insert({}) ;
 
-'''Template.body.events({
+```javascript
+  Template.body.events({
     "submit .new-task": function(event) {
       event.preventDefault();
       // Récupère la valeur de l'élément du formulaire
@@ -144,35 +147,43 @@ Nous allons pouvoir récupérer la valeur de l'élément puis nous inséront not
       // La ligne suivante s'occupe de vider l'élément submit
       event.target.text.value = "";
     }
-  });'''
+  });
+```
 
 Nous déclarons ensuite deux fonctions.
 La première marque la tâche comme faite ou non en fonction de sa valeur précédente.
 
-`"click .toggle-checked": function() {
+```javascript
+    "click .toggle-checked": function() {
       // Définit la propriété « checked » à l'opposé de sa valeur actuelle
       Tasks.update(this._id, {
         $set: {checked: ! this.checked}
       });
-    }`
+    }
+```
 
 La seconde fonction supprime l'élément.
 
-'''"click .delete": function() {
-      Tasks.remove(this._id);
-    }'''
+```javascript
+  "click .delete": function() {
+    Tasks.remove(this._id);
+  }
+```
 
 Nous pouvons aussi entrer du code qui sera exécuté uniquement sur le serveur, mais nous n'allons pas en avoir besoin ici.
 
-'''if (Meteor.isServer) {
+```javascript
+if (Meteor.isServer) {
   Meteor.startup(function () {
     // L'exécution de code sur le serveur au démarrage
   });
-}'''
+}
+```
 
 ###simple-todos.js
 
-'''Tasks = new Mongo.Collection("tasks");
+```javascript
+Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isClient) {
   Template.body.helpers({
@@ -214,34 +225,42 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // L'exécution de code sur le serveur au démarrage
   });
-}'''
+}
+```
 
 ##Le code HTML :
 
 Nous allons appeler le helpers « tasks », que nous avons vu dans le code JavaScript ce qui fait que nous inserons le template (on détaillera juste en dessous ce qu'est un template) « task » autant de fois qu'il y a d'éléments dans notre collection.
 
-'''{{#each tasks}}
+```html
+{{#each tasks}}
 	{{> task}}
-{{/each}}'''
+{{/each}}
+```
 
 Ensuite nous définissons le template (un template est un morceau de code HTML que l'on inclus autant de fois que l'on veut) qui va nous permettre d'afficher les informations sur les tâches.
 
-'''<template name="task">
+```html
+<template name="task">
   <!-- La ligne suivante s'occupe d'ajouter ou d'enlever la classe « checked » -->
   <li class="{{#if checked}}checked{{/if}}">
     <button class="delete">&times;</button>
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
     <span class="text">{{text}}</span>
   </li>
-</template>'''
+</template>
+```
 
 A la ligne 27 nous voyons « {{text}} » qui récupère la valeur de la propriété text de l'élément de notre collection.
 
-'''<span class="text">{{text}}</span>'''
+```html
+<span class="text">{{text}}</span>
+```
 
 ###simple-todos.html
 
-'''<head>
+```html
+<head>
   <title>my-todo</title>
 </head>
 
@@ -269,7 +288,8 @@ A la ligne 27 nous voyons « {{text}} » qui récupère la valeur de la propri
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
     <span class="text">{{text}}</span>
   </li>
-</template>'''
+</template>
+```
 
 Nous voila arriver à la fin de ce cours si votre application n'est pas lancée, vous pouvez la lancer grâce à cette commande :
 
