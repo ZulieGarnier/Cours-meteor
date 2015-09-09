@@ -23,6 +23,10 @@ simple-todos.html
 simple-todos.css
 .meteor
 
+Puis nous allons nous rendre dans notre projet grâce à la commande `cd` qui permet de se déplacer dans les dossiers.
+
+`cd simple-todos`
+
 Nous ne toucherons pas au dossier .meteor mais simplement au trois fichiers à la racine de notre application.
 
 Vous pouvez déjà lancer votre application en tappant :
